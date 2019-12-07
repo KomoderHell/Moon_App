@@ -9,8 +9,8 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.Checkable;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,14 +28,16 @@ public class SignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-        toolbar = findViewById(R.id.toolbar_signin);
+        toolbar = findViewById(R.id.toolbar_retailer_registration);
         TextView textView = toolbar.findViewById(R.id.toolbar_head);
         textView.setText("Sign in");
+        ImageView imageViewBack = findViewById(R.id.back_arrow);
+        imageViewBack.setVisibility(View.GONE);
 
-        editTextMobileEmail = findViewById(R.id.editTextPhoneEmail);
-        editTextPassword = findViewById(R.id.editTextPassword);
-        checkBoxRemember = findViewById(R.id.checkBox);
-        buttonLogin = findViewById(R.id.buttonLogin);
+        editTextMobileEmail = findViewById(R.id.editTextShopName);
+        editTextPassword = findViewById(R.id.editTextGSTNumber);
+        checkBoxRemember = findViewById(R.id.checkBoxTnC);
+        buttonLogin = findViewById(R.id.buttonNext);
         buttonRegister = findViewById(R.id.buttonRegister);
 
 

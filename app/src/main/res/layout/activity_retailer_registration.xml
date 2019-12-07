@@ -34,8 +34,8 @@
             android:layout_marginEnd="32dp"
             android:ems="10"
             android:fontFamily="@font/lato"
-            android:hint="Mobile number or email"
-            android:inputType="textEmailAddress"
+            android:hint="Shop Name"
+            android:inputType="text"
             android:paddingStart="12dp"
             android:textColorHint="#717171"
             app:layout_constraintEnd_toEndOf="parent"
@@ -51,13 +51,30 @@
             android:layout_marginEnd="32dp"
             android:ems="10"
             android:fontFamily="@font/lato"
-            android:hint="Password"
-            android:inputType="textPassword"
+            android:hint="GST Nmuber (OPTIONAL)"
+            android:inputType="text"
             android:paddingStart="12dp"
             android:textColorHint="#717171"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editTextShopName" />
+
+        <EditText
+            android:id="@+id/editTextBussNature"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:ems="10"
+            android:fontFamily="@font/lato"
+            android:hint="Nature of Bussiness"
+            android:inputType="text"
+            android:paddingStart="12dp"
+            android:textColorHint="#717171"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editTextGSTNumber" />
 
         <CheckBox
             android:id="@+id/checkBoxTnC"
@@ -66,11 +83,24 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/lato"
-            android:text="Remember me"
+            android:text="I accept all the "
             android:textColor="#4F4D4D"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/editTextGSTNumber"
-            app:layout_constraintTop_toBottomOf="@id/editTextGSTNumber" />
+            app:layout_constraintTop_toBottomOf="@id/editTextBussNature" />
+
+        <TextView
+            android:id="@+id/textViewTnC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/lato"
+            app:layout_constraintStart_toEndOf="@id/checkBoxTnC"
+            app:layout_constraintTop_toTopOf="@id/checkBoxTnC"
+            android:text="Terms and Conditions"
+            app:layout_constraintBottom_toBottomOf="@id/checkBoxTnC"/>
 
         <Button
             android:id="@+id/buttonNext"
@@ -81,7 +111,7 @@
             android:layout_marginEnd="48dp"
             android:background="@drawable/tab_1"
             android:fontFamily="@font/lato"
-            android:text="Login"
+            android:text="Next"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="16sp"
@@ -89,24 +119,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/checkBoxTnC" />
-
-        <Button
-            android:id="@+id/buttonRegister"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="48dp"
-            android:background="@drawable/tab_2"
-            android:fontFamily="@font/lato"
-            android:text="Register"
-            android:textAllCaps="false"
-            android:textColor="#5D7EF6"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonNext" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
