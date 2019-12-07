@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bnv_home"
+        android:icon="@drawable/ic_home_solid"
+        android:title="Home" />
+    <item
+        android:id="@+id/bnv_notification"
+        android:icon="@drawable/ic_home_solid"
+        android:title="Notification" />
+    <item
+        android:id="@+id/bnv_cart"
+        android:icon="@drawable/ic_home_solid"
+        android:title="Cart" />
+    <item
+        android:id="@+id/bnv_Profile"
+        android:icon="@drawable/ic_home_solid"
+        android:title="Profile"/>
 
 </menu>
