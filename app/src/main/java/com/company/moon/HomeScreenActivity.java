@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -39,6 +40,9 @@ public class HomeScreenActivity extends AppCompatActivity {
                 int id = menuItem.getItemId();
                 if(id==R.id.nav_register_as_distributer){
                     Toast.makeText(HomeScreenActivity.this,"Reg as dist",Toast.LENGTH_SHORT).show();
+                }
+                else if (id==R.id.nav_register_as_reseller){
+                    startActivity(new Intent(HomeScreenActivity.this,RetailerRegistrationActivity.class));
                 }
                 return true;
             }

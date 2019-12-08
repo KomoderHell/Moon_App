@@ -4,15 +4,103 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E5E5E5"
     tools:context=".RetailerRegOTPVerificationActivity">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="OTP"
+    <include
+        android:id="@+id/toolbar_retailer_registration"
+        layout="@layout/toolbar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:background="@drawable/bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_retailer_registration">
+
+        <TextView
+            android:id="@+id/verification"
+            android:layout_width="wrap_content"
+            android:text="Verification"
+            android:textSize="18dp"
+            android:fontFamily="@font/lato"
+            android:textColor="#000000"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="150dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <EditText
+            android:id="@+id/editTextOTP"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:ems="10"
+            android:fontFamily="@font/lato"
+            android:hint="Enter the OTP"
+            android:inputType="text"
+            android:paddingStart="12dp"
+            android:textColorHint="#717171"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/verification" />
+
+
+
+
+        <Button
+            android:id="@+id/buttonNext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="220dp"
+            android:layout_marginEnd="48dp"
+            android:background="@drawable/tab_1"
+            android:fontFamily="@font/lato"
+            android:text="Next"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewResend" />
+
+        <TextView
+            android:id="@+id/textViewOTP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OTP"
+            android:layout_marginRight="4dp"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            android:fontFamily="@font/lato"
+            app:layout_constraintEnd_toEndOf="@+id/editTextOTP"
+            app:layout_constraintTop_toBottomOf="@+id/editTextOTP" />
+
+        <TextView
+            android:id="@+id/textViewResend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Resend "
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/lato"
+            app:layout_constraintEnd_toStartOf="@+id/textViewOTP"
+            app:layout_constraintTop_toBottomOf="@+id/editTextOTP" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

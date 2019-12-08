@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,13 @@ public class RetailerRegistrationActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar_retailer_registration);
         TextView textView = toolbar.findViewById(R.id.toolbar_head);
         textView.setText("Register as retailer");
+        ImageView imageBack = findViewById(R.id.back_arrow);
+        imageBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         editTextShopName = findViewById(R.id.editTextShopName);
         editTextGSTNumber = findViewById(R.id.editTextGSTNumber);
@@ -44,6 +52,8 @@ public class RetailerRegistrationActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void next() {
         shopName = editTextShopName.getText().toString().trim();
@@ -62,7 +72,7 @@ public class RetailerRegistrationActivity extends AppCompatActivity {
         }
         else{
             if(numberGST.isEmpty()){
-                startActivity(new Intent(RetailerRegistrationActivity.this,RetailerRegProfilePicActivity.class));
+                startActivity(new Intent(RetailerRegistrationActivity.this,RetailerRegShopPicUploadActivity.class));
             }
             else {
                 startActivity(new Intent(RetailerRegistrationActivity.this,RetailerRegOTPVerificationActivity.class));
