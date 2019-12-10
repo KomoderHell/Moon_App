@@ -1,25 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-<item
-    android:id="@+id/nav_register_as_distributer"
-    android:title="Register as distributer"
-    />
+    <item
+        android:id="@+id/nav_register_as_distributer"
+        android:title="Register as distributer" />
     <item
         android:id="@+id/nav_register_as_reseller"
-        android:title="Register as reseller"
-        />
+        android:title="Register as retailer" />
     <item
         android:id="@+id/nav_privacy_policy"
-        android:title="Privacy Policy"
-        />
+        android:title="Privacy Policy" />
     <item
         android:id="@+id/nav_about_us"
-        android:title="About us"
-        />
+        android:title="About us" />
     <item
         android:id="@+id/nav_settings"
-        android:title="Settings"
-        />
+        android:title="Settings" />
 
 
 </menu>

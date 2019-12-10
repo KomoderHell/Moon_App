@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -46,6 +47,13 @@ public class RetailerRegProfilePicActivity extends AppCompatActivity {
             public void onClick(View v) {
                 chooseImage();
 
+            }
+        });
+        buttonFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(RetailerRegProfilePicActivity.this, "Registered", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(RetailerRegProfilePicActivity.this,HomeScreenActivity.class));
             }
         });
     }

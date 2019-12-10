@@ -78,6 +78,8 @@ public class SignUpActivity extends AppCompatActivity {
             editTextConfirmPassword.setError("Does not matches the created password");
         } else {
             Toast.makeText(this, "Registered", Toast.LENGTH_SHORT).show();
+            startActivity( new Intent(SignUpActivity.this,HomeScreenActivity.class));
+            finish();
         }
     }
 }

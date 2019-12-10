@@ -77,6 +77,8 @@ public class SignInActivity extends AppCompatActivity {
         }
         else{
             Toast.makeText(this, "Login\n" + boolRemember , Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(SignInActivity.this,HomeScreenActivity.class));
+            finish();
         }
     }
 

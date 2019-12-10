@@ -18,7 +18,6 @@ public class RetailerRegShopPicUploadActivity extends AppCompatActivity {
 
     public static final int PICK_IMAGE_1_REQUEST = 1;
     public static final int PICK_IMAGE_2_REQUEST = 2;
-    private int imagesAdded = 0;
 
     ConstraintLayout toolbar;
     ImageView imageViewAdd1, imageViewAdd2, tick1, tick2;
@@ -75,6 +74,12 @@ public class RetailerRegShopPicUploadActivity extends AppCompatActivity {
                 importImage(PICK_IMAGE_2_REQUEST);
             }
         });
+        buttonFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RetailerRegShopPicUploadActivity.this,RetailerRegProfilePicActivity.class));
+            }
+        });
     }
 
 
@@ -94,7 +99,6 @@ public class RetailerRegShopPicUploadActivity extends AppCompatActivity {
 
             textViewAdd1.setText("Image addded");
             tick1.setVisibility(View.VISIBLE);
-            imagesAdded++;
             if (imageUri1!=null&&imageUri2!=null) {
                 buttonFinish.setVisibility(View.VISIBLE);
             }
@@ -104,7 +108,6 @@ public class RetailerRegShopPicUploadActivity extends AppCompatActivity {
 
             textViewAdd2.setText("Image addded");
             tick2.setVisibility(View.VISIBLE);
-            imagesAdded++;
             if (imageUri1!=null&&imageUri2!=null) {
                 buttonFinish.setVisibility(View.VISIBLE);
             }
