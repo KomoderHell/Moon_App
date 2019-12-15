@@ -8,7 +8,7 @@
     tools:context=".RetailerRegProfilePicActivity">
 
     <include
-        android:id="@+id/toolbar_retailer_registration"
+        android:id="@+id/toolbar_distributer_registration"
         layout="@layout/toolbar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,10 +23,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_retailer_registration">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_distributer_registration">
 
         <TextView
-            android:id="@+id/textView_profile_pic"
+            android:id="@+id/textView_profile_pic_distributer"
             android:layout_width="wrap_content"
             android:text="Add your Profile pic/LOGO"
             android:textSize="18dp"
@@ -44,14 +44,14 @@
             android:layout_height="260dp"
             android:layout_marginTop="16sp"
             android:src="@drawable/profile_pic"
-            app:layout_constraintTop_toBottomOf="@id/textView_profile_pic"
+            app:layout_constraintTop_toBottomOf="@id/textView_profile_pic_distributer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
 
 
         <Button
-            android:id="@+id/buttonFinish"
+            android:id="@+id/buttonFinishDistributer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"

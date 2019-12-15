@@ -26,8 +26,9 @@ public class HomeScreenActivity extends AppCompatActivity {
 
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.Open,R.string.Close);
-        actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
+
         actionBarDrawerToggle.syncState();
 
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -39,7 +40,7 @@ public class HomeScreenActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
                 if(id==R.id.nav_register_as_distributer){
-                    Toast.makeText(HomeScreenActivity.this,"Reg as dist",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(HomeScreenActivity.this,ActivityDistributer.class));
                 }
                 else if (id==R.id.nav_register_as_reseller){
                     startActivity(new Intent(HomeScreenActivity.this,RetailerRegistrationActivity.class));

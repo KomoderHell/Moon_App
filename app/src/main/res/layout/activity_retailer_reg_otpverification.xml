@@ -8,7 +8,7 @@
     tools:context=".RetailerRegOTPVerificationActivity">
 
     <include
-        android:id="@+id/toolbar_retailer_registration"
+        android:id="@+id/toolbar_distributer_registration"
         layout="@layout/toolbar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,10 +23,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_retailer_registration">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_distributer_registration">
 
         <TextView
-            android:id="@+id/verification"
+            android:id="@+id/distributer_loc"
             android:layout_width="wrap_content"
             android:text="Verification"
             android:textSize="18dp"
@@ -39,7 +39,7 @@
             app:layout_constraintStart_toStartOf="parent"/>
 
         <EditText
-            android:id="@+id/editTextOTP"
+            android:id="@+id/address_distributer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -53,13 +53,13 @@
             android:textColorHint="#717171"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/verification" />
+            app:layout_constraintTop_toBottomOf="@id/distributer_loc" />
 
 
 
 
         <Button
-            android:id="@+id/buttonNext"
+            android:id="@+id/buttonNextDistributer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
@@ -85,8 +85,8 @@
             android:textSize="12sp"
             android:textColor="#000000"
             android:fontFamily="@font/lato"
-            app:layout_constraintEnd_toEndOf="@+id/editTextOTP"
-            app:layout_constraintTop_toBottomOf="@+id/editTextOTP" />
+            app:layout_constraintEnd_toEndOf="@+id/address_distributer"
+            app:layout_constraintTop_toBottomOf="@+id/address_distributer" />
 
         <TextView
             android:id="@+id/textViewResend"
@@ -98,7 +98,7 @@
             android:textColor="@color/colorAccent"
             android:fontFamily="@font/lato"
             app:layout_constraintEnd_toStartOf="@+id/textViewOTP"
-            app:layout_constraintTop_toBottomOf="@+id/editTextOTP" />
+            app:layout_constraintTop_toBottomOf="@+id/address_distributer" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

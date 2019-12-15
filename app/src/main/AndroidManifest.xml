@@ -13,10 +13,16 @@
         <activity android:name=".RetailerRegOTPVerificationActivity" />
         <activity android:name=".RetailerRegProfilePicActivity" />
         <activity android:name=".RetailerRegistrationActivity" />
+        <activity android:name=".ActivityDistributer" />
+        <activity android:name=".DistributerLocation" />
+        <activity android:name=".DistributerImageUpload" />
+        <activity android:name=".DistributerVideoUpload" />
         <activity android:name=".HomeScreenActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".SignInActivity" />
         <activity android:name=".MainActivity">
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

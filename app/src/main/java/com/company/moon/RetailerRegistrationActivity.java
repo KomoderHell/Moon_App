@@ -27,7 +27,7 @@ public class RetailerRegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retailer_registration);
-        toolbar = findViewById(R.id.toolbar_retailer_registration);
+        toolbar = findViewById(R.id.toolbar_distributer_registration);
         TextView textView = toolbar.findViewById(R.id.toolbar_head);
         textView.setText("Register as retailer");
         ImageView imageBack = findViewById(R.id.back_arrow);
@@ -42,8 +42,8 @@ public class RetailerRegistrationActivity extends AppCompatActivity {
         editTextGSTNumber = findViewById(R.id.editTextGSTNumber);
         editTextBussNature = findViewById(R.id.editTextBussNature);
         textViewTnC = findViewById(R.id.textViewTnC);
-        checkBoxTnC = findViewById(R.id.checkBoxTnC);
-        buttonNext = findViewById(R.id.buttonNext);
+        checkBoxTnC = findViewById(R.id.checkBoxTnC2);
+        buttonNext = findViewById(R.id.buttonNextDistributer);
 
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override

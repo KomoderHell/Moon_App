@@ -28,7 +28,7 @@ public class SignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-        toolbar = findViewById(R.id.toolbar_retailer_registration);
+        toolbar = findViewById(R.id.toolbar_distributer_registration);
         TextView textView = toolbar.findViewById(R.id.toolbar_head);
         textView.setText("Sign in");
         ImageView imageViewBack = findViewById(R.id.back_arrow);
@@ -36,8 +36,8 @@ public class SignInActivity extends AppCompatActivity {
 
         editTextMobileEmail = findViewById(R.id.editTextShopName);
         editTextPassword = findViewById(R.id.editTextGSTNumber);
-        checkBoxRemember = findViewById(R.id.checkBoxTnC);
-        buttonLogin = findViewById(R.id.buttonNext);
+        checkBoxRemember = findViewById(R.id.checkBoxTnC2);
+        buttonLogin = findViewById(R.id.buttonNextDistributer);
         buttonRegister = findViewById(R.id.buttonRegister);
 
 
