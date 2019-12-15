@@ -28,7 +28,7 @@ public class RetailerRegProfilePicActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retailer_reg_profile_pic);
-        toolbar = findViewById(R.id.toolbar_retailer_registration);
+        toolbar = findViewById(R.id.toolbar_distributer_registration);
         TextView textView = toolbar.findViewById(R.id.toolbar_head);
         textView.setText("Register as retailer");
         ImageView imageBack = findViewById(R.id.back_arrow);
@@ -40,7 +40,7 @@ public class RetailerRegProfilePicActivity extends AppCompatActivity {
         });
 
         imageViewProfilePic = findViewById(R.id.profile_pic);
-        buttonFinish = findViewById(R.id.buttonFinish);
+        buttonFinish = findViewById(R.id.buttonFinishDistributer);
 
         imageViewProfilePic.setOnClickListener(new View.OnClickListener() {
             @Override

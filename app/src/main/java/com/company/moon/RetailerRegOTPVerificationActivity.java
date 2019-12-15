@@ -23,7 +23,7 @@ public class RetailerRegOTPVerificationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retailer_reg_otpverification);
-        toolbar = findViewById(R.id.toolbar_retailer_registration);
+        toolbar = findViewById(R.id.toolbar_distributer_registration);
         TextView textView = toolbar.findViewById(R.id.toolbar_head);
         textView.setText("Register as retailer");
         ImageView imageBack = findViewById(R.id.back_arrow);
@@ -35,8 +35,8 @@ public class RetailerRegOTPVerificationActivity extends AppCompatActivity {
         });
 
         textViewResend = findViewById(R.id.textViewResend);
-        editTextOTP = findViewById(R.id.editTextOTP);
-        buttonNext = findViewById(R.id.buttonNext);
+        editTextOTP = findViewById(R.id.address_distributer);
+        buttonNext = findViewById(R.id.buttonNextDistributer);
 
         textViewResend.setOnClickListener(new View.OnClickListener() {
             @Override

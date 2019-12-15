@@ -12,8 +12,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 public class RetailerRegShopPicUploadActivity extends AppCompatActivity {
 
     public static final int PICK_IMAGE_1_REQUEST = 1;
@@ -30,7 +28,7 @@ public class RetailerRegShopPicUploadActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retailer_reg_shop_pic_upload);
-        toolbar = findViewById(R.id.toolbar_retailer_registration);
+        toolbar = findViewById(R.id.toolbar_distributer_registration);
         TextView textView = toolbar.findViewById(R.id.toolbar_head);
         textView.setText("Register as retailer");
         ImageView imageBack = findViewById(R.id.back_arrow);
@@ -42,7 +40,7 @@ public class RetailerRegShopPicUploadActivity extends AppCompatActivity {
         });
 
 
-        buttonFinish = findViewById(R.id.buttonFinish);
+        buttonFinish = findViewById(R.id.buttonFinishDistributer);
         imageViewAdd1 = findViewById(R.id.imageViewAddImg1);
         imageViewAdd2 = findViewById(R.id.imageViewAddImg2);
         textViewAdd1 = findViewById(R.id.textViewAddImg1);

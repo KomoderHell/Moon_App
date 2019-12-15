@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Moon</string>
-    <string name="Open">Moon</string>
-    <string name="Close">Moon</string>
+    <string name="Open">Open</string>
+    <string name="Close">Close</string>
 </resources>

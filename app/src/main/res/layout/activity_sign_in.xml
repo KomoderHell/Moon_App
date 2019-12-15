@@ -8,7 +8,7 @@
     tools:context=".SignInActivity">
 
     <include
-        android:id="@+id/toolbar_retailer_registration"
+        android:id="@+id/toolbar_distributer_registration"
         layout="@layout/toolbar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +23,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_retailer_registration">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_distributer_registration">
 
         <EditText
             android:id="@+id/editTextShopName"
@@ -60,7 +60,7 @@
             app:layout_constraintTop_toBottomOf="@id/editTextShopName" />
 
         <CheckBox
-            android:id="@+id/checkBoxTnC"
+            android:id="@+id/checkBoxTnC2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -73,7 +73,7 @@
             app:layout_constraintTop_toBottomOf="@id/editTextGSTNumber" />
 
         <Button
-            android:id="@+id/buttonNext"
+            android:id="@+id/buttonNextDistributer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
@@ -88,7 +88,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBoxTnC" />
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxTnC2" />
 
         <Button
             android:id="@+id/buttonRegister"
@@ -106,7 +106,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonNext" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonNextDistributer" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
