@@ -26,7 +26,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar_distributer_registration">
 
         <TextView
-            android:id="@+id/textView_profile_pic_distributer"
+            android:id="@+id/editTextNoOfPieces"
             android:layout_width="wrap_content"
             android:text="Add shop images"
             android:textSize="18dp"
@@ -39,7 +39,7 @@
             app:layout_constraintStart_toStartOf="parent"/>
 
         <View
-            android:id="@+id/view"
+            android:id="@+id/view_1_start"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginStart="32dp"
@@ -48,7 +48,7 @@
             android:background="#CFCFCF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_profile_pic_distributer" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextNoOfPieces" />
 
 
 
@@ -71,15 +71,15 @@
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView_profile_pic_distributer" />
+            app:layout_constraintTop_toBottomOf="@id/editTextNoOfPieces" />
 
         <ImageView
-            android:id="@+id/imageViewAddImg1"
+            android:id="@+id/UploadBtn1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="@id/view"
-            app:layout_constraintTop_toBottomOf="@+id/view"
+            app:layout_constraintStart_toStartOf="@id/view_1_start"
+            app:layout_constraintTop_toBottomOf="@+id/view_1_start"
             app:srcCompat="@drawable/camera" />
 
         <TextView
@@ -91,12 +91,12 @@
             android:textColor="#7C7878"
             android:fontFamily="@font/lato"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageViewAddImg1"
-            app:layout_constraintStart_toEndOf="@+id/imageViewAddImg1"
-            app:layout_constraintTop_toTopOf="@+id/imageViewAddImg1" />
+            app:layout_constraintBottom_toBottomOf="@+id/UploadBtn1"
+            app:layout_constraintStart_toEndOf="@+id/UploadBtn1"
+            app:layout_constraintTop_toTopOf="@+id/UploadBtn1" />
 
         <View
-            android:id="@+id/view2"
+            android:id="@+id/view_2_start"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginStart="32dp"
@@ -105,15 +105,15 @@
             android:background="#CFCFCF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewAddImg1" />
+            app:layout_constraintTop_toBottomOf="@+id/UploadBtn1" />
 
         <ImageView
-            android:id="@+id/imageViewAddImg2"
+            android:id="@+id/UploadBtn2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="@id/imageViewAddImg1"
-            app:layout_constraintTop_toBottomOf="@+id/view2"
+            app:layout_constraintStart_toStartOf="@id/UploadBtn1"
+            app:layout_constraintTop_toBottomOf="@+id/view_2_start"
             app:srcCompat="@drawable/camera" />
 
         <TextView
@@ -125,12 +125,12 @@
             android:textColor="#7C7878"
             android:fontFamily="@font/lato"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageViewAddImg2"
-            app:layout_constraintStart_toEndOf="@+id/imageViewAddImg2"
-            app:layout_constraintTop_toTopOf="@+id/imageViewAddImg2" />
+            app:layout_constraintBottom_toBottomOf="@+id/UploadBtn2"
+            app:layout_constraintStart_toEndOf="@+id/UploadBtn2"
+            app:layout_constraintTop_toTopOf="@+id/UploadBtn2" />
 
         <View
-            android:id="@+id/view3"
+            android:id="@+id/view_3_start"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginStart="32dp"
@@ -139,7 +139,7 @@
             android:background="#CFCFCF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewAddImg2" />
+            app:layout_constraintTop_toBottomOf="@+id/UploadBtn2" />
 
         <ImageView
             android:id="@+id/imageView3"

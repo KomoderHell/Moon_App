@@ -36,7 +36,7 @@ public class DistributerVideoUpload extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(DistributerVideoUpload.this, "Registered", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(DistributerVideoUpload.this, HomeScreenActivity.class));
+                startActivity(new Intent(DistributerVideoUpload.this, DistributerAddProduct1.class));
             }
         });
 

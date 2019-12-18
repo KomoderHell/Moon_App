@@ -38,12 +38,12 @@ public class RetailerRegistrationActivity extends AppCompatActivity {
             }
         });
 
-        editTextShopName = findViewById(R.id.editTextShopName);
-        editTextGSTNumber = findViewById(R.id.editTextGSTNumber);
-        editTextBussNature = findViewById(R.id.editTextBussNature);
+        editTextShopName = findViewById(R.id.editTextStdPrice);
+        editTextGSTNumber = findViewById(R.id.editTextQuantity);
+        editTextBussNature = findViewById(R.id.editTextMRP);
         textViewTnC = findViewById(R.id.textViewTnC);
         checkBoxTnC = findViewById(R.id.checkBoxTnC2);
-        buttonNext = findViewById(R.id.buttonNextDistributer);
+        buttonNext = findViewById(R.id.buttonNextDistributerAdd2);
 
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override

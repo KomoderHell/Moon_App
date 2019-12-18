@@ -34,10 +34,10 @@ public class SignInActivity extends AppCompatActivity {
         ImageView imageViewBack = findViewById(R.id.back_arrow);
         imageViewBack.setVisibility(View.GONE);
 
-        editTextMobileEmail = findViewById(R.id.editTextShopName);
-        editTextPassword = findViewById(R.id.editTextGSTNumber);
+        editTextMobileEmail = findViewById(R.id.editTextStdPrice);
+        editTextPassword = findViewById(R.id.editTextQuantity);
         checkBoxRemember = findViewById(R.id.checkBoxTnC2);
-        buttonLogin = findViewById(R.id.buttonNextDistributer);
+        buttonLogin = findViewById(R.id.buttonNextDistributerAdd2);
         buttonRegister = findViewById(R.id.buttonRegister);
 
 
