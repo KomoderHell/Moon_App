@@ -42,7 +42,7 @@ public class ActivityDistributer extends AppCompatActivity {
         editTextBussNatureDis = findViewById(R.id.editTextBussNatureDistributer);
         textViewTnCDis = findViewById(R.id.textViewTnC);
         checkBoxTnCDis = findViewById(R.id.checkBoxTnC2);
-        buttonNextDis = findViewById(R.id.buttonNextDistributer);
+        buttonNextDis = findViewById(R.id.buttonNextDistributerAdd2);
 
         buttonNextDis.setOnClickListener(new View.OnClickListener() {
             @Override

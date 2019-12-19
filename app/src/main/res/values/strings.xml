@@ -2,4 +2,11 @@
     <string name="app_name">Moon</string>
     <string name="Open">Open</string>
     <string name="Close">Close</string>
+    <string-array name="numbers">
+        <item>One</item>
+        <item>Two</item>
+        <item>Three</item>
+        <item>Four</item>
+        <item>Five</item>
+    </string-array>
 </resources>

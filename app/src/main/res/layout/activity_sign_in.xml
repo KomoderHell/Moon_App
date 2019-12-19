@@ -26,7 +26,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar_distributer_registration">
 
         <EditText
-            android:id="@+id/editTextShopName"
+            android:id="@+id/editTextStdPrice"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -43,7 +43,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextGSTNumber"
+            android:id="@+id/editTextQuantity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -57,7 +57,7 @@
             android:textColorHint="#717171"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/editTextShopName" />
+            app:layout_constraintTop_toBottomOf="@id/editTextStdPrice" />
 
         <CheckBox
             android:id="@+id/checkBoxTnC2"
@@ -69,11 +69,11 @@
             android:text="Remember me"
             android:textColor="#4F4D4D"
             android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@+id/editTextGSTNumber"
-            app:layout_constraintTop_toBottomOf="@id/editTextGSTNumber" />
+            app:layout_constraintStart_toStartOf="@+id/editTextQuantity"
+            app:layout_constraintTop_toBottomOf="@id/editTextQuantity" />
 
         <Button
-            android:id="@+id/buttonNextDistributer"
+            android:id="@+id/buttonNextDistributerAdd2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
@@ -106,7 +106,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonNextDistributer" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonNextDistributerAdd2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

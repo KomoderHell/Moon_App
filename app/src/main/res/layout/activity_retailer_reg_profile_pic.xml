@@ -26,7 +26,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar_distributer_registration">
 
         <TextView
-            android:id="@+id/textView_profile_pic_distributer"
+            android:id="@+id/editTextNoOfPieces"
             android:layout_width="wrap_content"
             android:text="Add your Profile pic/LOGO"
             android:textSize="18dp"
@@ -44,7 +44,7 @@
             android:layout_height="260dp"
             android:layout_marginTop="16sp"
             android:src="@drawable/profile_pic"
-            app:layout_constraintTop_toBottomOf="@id/textView_profile_pic_distributer"
+            app:layout_constraintTop_toBottomOf="@id/editTextNoOfPieces"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 

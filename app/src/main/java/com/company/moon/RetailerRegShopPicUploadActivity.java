@@ -41,8 +41,8 @@ public class RetailerRegShopPicUploadActivity extends AppCompatActivity {
 
 
         buttonFinish = findViewById(R.id.buttonFinishDistributer);
-        imageViewAdd1 = findViewById(R.id.imageViewAddImg1);
-        imageViewAdd2 = findViewById(R.id.imageViewAddImg2);
+        imageViewAdd1 = findViewById(R.id.UploadBtn1);
+        imageViewAdd2 = findViewById(R.id.UploadBtn2);
         textViewAdd1 = findViewById(R.id.textViewAddImg1);
         textViewAdd2 = findViewById(R.id.textViewAddImg2);
         tick1 = findViewById(R.id.imageView3);

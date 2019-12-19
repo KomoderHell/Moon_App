@@ -36,7 +36,7 @@ public class RetailerRegOTPVerificationActivity extends AppCompatActivity {
 
         textViewResend = findViewById(R.id.textViewResend);
         editTextOTP = findViewById(R.id.address_distributer);
-        buttonNext = findViewById(R.id.buttonNextDistributer);
+        buttonNext = findViewById(R.id.buttonNextDistributerAdd2);
 
         textViewResend.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -26,7 +26,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar_distributer_registration">
 
         <TextView
-            android:id="@+id/textView_profile_pic_distributer"
+            android:id="@+id/editTextNoOfPieces"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -39,7 +39,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
-            android:id="@+id/view"
+            android:id="@+id/view_1_start"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginStart="32dp"
@@ -48,18 +48,18 @@
             android:background="#CFCFCF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_profile_pic_distributer" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextNoOfPieces" />
 
 
 
 
         <ImageView
-            android:id="@+id/imageViewAddImg1"
+            android:id="@+id/UploadBtn1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="@id/view"
-            app:layout_constraintTop_toBottomOf="@+id/view"
+            app:layout_constraintStart_toStartOf="@id/view_1_start"
+            app:layout_constraintTop_toBottomOf="@+id/view_1_start"
             app:srcCompat="@drawable/upload" />
 
         <TextView
@@ -71,12 +71,12 @@
             android:textColor="#7C7878"
             android:fontFamily="@font/lato"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageViewAddImg1"
-            app:layout_constraintStart_toEndOf="@+id/imageViewAddImg1"
-            app:layout_constraintTop_toTopOf="@+id/imageViewAddImg1" />
+            app:layout_constraintBottom_toBottomOf="@+id/UploadBtn1"
+            app:layout_constraintStart_toEndOf="@+id/UploadBtn1"
+            app:layout_constraintTop_toTopOf="@+id/UploadBtn1" />
 
         <View
-            android:id="@+id/view2"
+            android:id="@+id/view_2_start"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginStart="32dp"
@@ -85,7 +85,7 @@
             android:background="#CFCFCF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewAddImg1" />
+            app:layout_constraintTop_toBottomOf="@+id/UploadBtn1" />
 
 
 
@@ -101,7 +101,7 @@
             app:layout_constraintStart_toEndOf="@id/textViewAddImg1"/>
 
         <Button
-            android:id="@+id/buttonNextDistributerImg"
+            android:id="@+id/buttonNextDistributerAdd1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
@@ -118,7 +118,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view2"
+            app:layout_constraintTop_toBottomOf="@+id/view_2_start"
             app:layout_constraintVertical_bias="0.05" />
 
 
