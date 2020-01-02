@@ -1,114 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E5E5E5"
+    android:orientation="vertical"
     tools:context=".SignInActivity">
 
     <include
         android:id="@+id/toolbar_distributer_registration"
         layout="@layout/toolbar" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
-        android:background="@drawable/bg"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_distributer_registration">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="#FFFFFF"
+        app:cardCornerRadius="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="32dp">
 
-        <EditText
-            android:id="@+id/editTextStdPrice"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="160dp"
-            android:layout_marginEnd="32dp"
-            android:ems="10"
-            android:fontFamily="@font/lato"
-            android:hint="Mobile number or email"
-            android:inputType="textEmailAddress"
-            android:paddingStart="12dp"
-            android:textColorHint="#717171"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
-        <EditText
-            android:id="@+id/editTextQuantity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:ems="10"
-            android:fontFamily="@font/lato"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:paddingStart="12dp"
-            android:textColorHint="#717171"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/editTextStdPrice" />
+            <EditText
+                android:id="@+id/editTextStdPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/lato"
+                android:paddingStart="12dp"
+                android:layout_marginBottom="16dp"
+                android:hint="Mobile number or email"
+                android:inputType="textEmailAddress"
+                android:textColorHint="#717171"
+                android:layout_above="@id/editTextQuantity"/>
 
-        <CheckBox
-            android:id="@+id/checkBoxTnC2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/lato"
-            android:text="Remember me"
-            android:textColor="#4F4D4D"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@+id/editTextQuantity"
-            app:layout_constraintTop_toBottomOf="@id/editTextQuantity" />
+            <EditText
+                android:id="@+id/editTextQuantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/lato"
+                android:layout_marginBottom="16dp"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:paddingStart="12dp"
+                android:textColorHint="#717171"
+                android:layout_above="@id/checkBoxTnC2"/>
 
-        <Button
-            android:id="@+id/buttonNextDistributerAdd2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="90dp"
-            android:layout_marginEnd="48dp"
-            android:background="@drawable/tab_1"
-            android:fontFamily="@font/lato"
-            android:text="Login"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBoxTnC2" />
+            <CheckBox
+                android:id="@+id/checkBoxTnC2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Remember me"
+                android:fontFamily="@font/lato"
+                android:textColor="#4F4D4D"
+                android:layout_centerVertical="true"
+                android:textAppearance="?android:textAppearanceSmall" />
 
-        <Button
-            android:id="@+id/buttonRegister"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="48dp"
-            android:background="@drawable/tab_2"
-            android:fontFamily="@font/lato"
-            android:text="Register"
-            android:textAllCaps="false"
-            android:textColor="#5D7EF6"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonNextDistributerAdd2" />
+            <Button
+                android:id="@+id/buttonNextDistributerAdd2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tab_1"
+                android:text="Login"
+                android:fontFamily="@font/lato"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="12dp"
+                android:layout_above="@id/buttonRegister"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/buttonRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tab_2"
+                android:text="Register"
+                android:fontFamily="@font/lato"
+                android:textAllCaps="false"
+                android:textColor="#5D7EF6"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="48dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_alignParentBottom="true"/>
 
+        </RelativeLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
