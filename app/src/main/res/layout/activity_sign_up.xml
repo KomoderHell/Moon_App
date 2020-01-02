@@ -40,6 +40,7 @@
                     android:layout_marginTop="32dp"
                     android:layout_marginBottom="16dp"
                     android:ems="10"
+                    android:fontFamily="@font/lato"
                     android:hint="Mobile number"
                     android:inputType="phone"
                     android:paddingStart="12dp"
@@ -51,6 +52,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:ems="10"
+                    android:fontFamily="@font/lato"
                     android:hint="Email"
                     android:inputType="textEmailAddress"
                     android:paddingStart="12dp"
@@ -62,6 +64,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:ems="10"
+                    android:fontFamily="@font/lato"
                     android:hint="Create Password"
                     android:inputType="textPassword"
                     android:paddingStart="12dp"
@@ -97,6 +100,7 @@
                             android:layout_height="wrap_content"
                             android:button="@drawable/custom_checkbox"
                             android:text="   Distributor"
+                            android:fontFamily="@font/lato"
                             android:textAppearance="?android:textAppearanceMedium" />
 
                         <Space
@@ -110,6 +114,7 @@
                             android:layout_height="wrap_content"
                             android:button="@drawable/custom_checkbox"
                             android:text="   Retailer"
+                            android:fontFamily="@font/lato"
                             android:textAppearance="?android:textAppearanceMedium" />
 
                         <Space
@@ -132,6 +137,7 @@
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/tab_1"
                     android:text="Register"
+                    android:fontFamily="@font/lato"
                     android:textAllCaps="false"
                     android:textColor="@android:color/white"
                     android:textSize="16sp"
@@ -147,6 +153,7 @@
                     android:layout_marginBottom="42dp"
                     android:background="@drawable/tab_2"
                     android:text="Login"
+                    android:fontFamily="@font/lato"
                     android:textAllCaps="false"
                     android:textColor="#5D7EF6"
                     android:textSize="16sp"
