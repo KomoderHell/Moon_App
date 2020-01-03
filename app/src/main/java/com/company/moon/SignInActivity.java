@@ -108,27 +108,34 @@ public class SignInActivity extends AppCompatActivity {
                     Log.d("retro:", "onResponse: " + "response OK");
                     dialog.dismiss();
 
-                    Intent intent = new Intent(SignInActivity.this, HomeScreenActivity.class);
+                    Intent intent;
 
                     List<LogInInfo> user = response.body();
-
-                    if (boolRemember) {
-                        // Store the data in UserInfo table
-                        String sql = "INSERT INTO UserInfo(user_id, type) VALUES(?, ?)";
-                        SQLiteStatement statement = userInfoDatabase.compileStatement(sql);
-                        statement.bindString(1, user.get(0).getId());
-                        statement.bindString(2, user.get(0).getType());
-                        statement.execute();
-                    }
 
                     String type = user.get(0).getType();
                     // Type is used to identify who is the user
                     // 1 --> Admin
                     // 2 --> Manufacturer
                     // 3 --> Retailer
-                    intent.putExtra("Type", type);
-                    startActivity(intent);
-                    finish();
+                    if (type.equals("1")) {
+                        // Admin Login
+                    } else if (type.equals("2")) {
+                        // Manufacturer Login
+                    } else if (type.equals("3")) {
+                        // Retailer Login
+                        if (user.get(0).getFill_status().equals("0")) {
+                            // Go to update profile section
+                            intent = new Intent(SignInActivity.this, RetailerRegistrationActivity.class);
+                            intent.putExtra("user_id", response.body().get(0).getId());
+                            startActivity(intent);
+                            //finish();
+                        } else {
+                            // Go to Home Screen
+                            intent = new Intent(SignInActivity.this, HomeScreenActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
                 }
 
                 @Override
