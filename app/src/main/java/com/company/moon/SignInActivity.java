@@ -3,8 +3,12 @@ package com.company.moon;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +17,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -23,6 +33,8 @@ public class SignInActivity extends AppCompatActivity {
 
     String phoneEmail, password;
     Boolean boolRemember;
+
+    private SQLiteDatabase userInfoDatabase;
 
     private ApiRequest apiRequest;
 
@@ -41,6 +53,8 @@ public class SignInActivity extends AppCompatActivity {
         checkBoxRemember = findViewById(R.id.checkBoxTnC2);
         buttonLogin = findViewById(R.id.buttonNextDistributerAdd2);
         buttonRegister = findViewById(R.id.buttonRegister);
+
+        userInfoDatabase = this.openOrCreateDatabase("UserInfoDatabase", MODE_PRIVATE, null);
 
         apiRequest = ApiRequest.getInstance();
 
@@ -79,6 +93,7 @@ public class SignInActivity extends AppCompatActivity {
             // Show progress bar while we sign in the user
             ProgressDialog dialog = new ProgressDialog(SignInActivity.this);
             dialog.setMessage("Signing In...");
+            dialog.setCancelable(false);
             dialog.show();
 
             apiRequest.logInUser(phoneEmail, password, new Callback<List<LogInInfo>>() {
@@ -96,8 +111,21 @@ public class SignInActivity extends AppCompatActivity {
                     Intent intent = new Intent(SignInActivity.this, HomeScreenActivity.class);
 
                     List<LogInInfo> user = response.body();
-                    // Only 1 object is present
+
+                    if (boolRemember) {
+                        // Store the data in UserInfo table
+                        String sql = "INSERT INTO UserInfo(user_id, type) VALUES(?, ?)";
+                        SQLiteStatement statement = userInfoDatabase.compileStatement(sql);
+                        statement.bindString(1, user.get(0).getId());
+                        statement.bindString(2, user.get(0).getType());
+                        statement.execute();
+                    }
+
                     String type = user.get(0).getType();
+                    // Type is used to identify who is the user
+                    // 1 --> Admin
+                    // 2 --> Manufacturer
+                    // 3 --> Retailer
                     intent.putExtra("Type", type);
                     startActivity(intent);
                     finish();
@@ -112,5 +140,4 @@ public class SignInActivity extends AppCompatActivity {
             });
         }
     }
-
 }
