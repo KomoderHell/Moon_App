@@ -3,15 +3,25 @@ package com.company.moon;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -21,6 +31,8 @@ public class SignUpActivity extends AppCompatActivity {
     RadioGroup radioGroup;
 
     String phone, email, createPassword, confirmPassword, type;
+
+    private SQLiteDatabase userInfoDatabase;
 
     ApiRequest apiRequest;
 
@@ -41,6 +53,8 @@ public class SignUpActivity extends AppCompatActivity {
         buttonLogin = findViewById(R.id.buttonNextDistributerAdd2);
         buttonRegister = findViewById(R.id.buttonRegister);
         radioGroup = findViewById(R.id.rg_sign_up);
+
+        userInfoDatabase = this.openOrCreateDatabase("UserInfoDatabase", MODE_PRIVATE, null);
 
         apiRequest = ApiRequest.getInstance();
 
@@ -104,55 +118,85 @@ public class SignUpActivity extends AppCompatActivity {
             dialog.setCancelable(false);
             dialog.show();
 
-            apiRequest.signUpUser(email, createPassword, confirmPassword, phone, type, new Callback<Integer>() {
+            apiRequest.signUpUser(email, createPassword, confirmPassword, phone, type, new Callback<List<LogInInfo>>() {
                 @Override
-                public void onResponse(Call<Integer> call, Response<Integer> response) {
+                public void onResponse(Call<List<LogInInfo>> call, Response<List<LogInInfo>> response) {
                     if (!response.isSuccessful()) {
-                        //  Log.d("retro:", "onResponse: " + "response failed!!");
+                        Log.d("retro:", "onResponse: " + "response failed");
                         dialog.dismiss();
-                        Toast.makeText(SignUpActivity.this, "Error while signing up", Toast.LENGTH_SHORT).show();
                         return;
                     }
+                    List<LogInInfo> users = response.body();
+                    Log.d("retro:", "onResponse: " + response.body());
 
-                    int responseType = response.body();
-                    //Log.d("retro:", "onResponse: response OK " + Integer.toString(responseType));
                     dialog.dismiss();
 
-                    switch (responseType) {
-                        case 1:
-                            // Success
-                            Toast.makeText(SignUpActivity.this, "Registered", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(SignUpActivity.this, HomeScreenActivity.class));
+                    Intent intent;
+
+                    if (type.equals("2")) {
+                        // Manufacturer
+                    } else if (type.equals("3")) {
+                        // Retailer
+                        if (users.get(0).getFill_status().equals("0")) {
+                            // Go to Update profile section
+                            intent = new Intent(SignUpActivity.this, RetailerRegistrationActivity.class);
+                            intent.putExtra("user_id", users.get(0).getId());
+                            startActivity(intent);
+                        } else {
+                            // Go to HomeScreenActivity
+                            intent = new Intent(SignUpActivity.this, HomeScreenActivity.class);
+                            startActivity(intent);
                             finish();
-                            break;
-                        case 2:
-                            // Already handled before
-                            Toast.makeText(SignUpActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
-                            break;
-                        case 3:
-                            // Incorrect email format (handled before)
-                            Toast.makeText(SignUpActivity.this, "Incorrect email format", Toast.LENGTH_SHORT).show();
-                            break;
-                        case 4:
-                            // Email already exists
-                            Toast.makeText(SignUpActivity.this, "Email already exists", Toast.LENGTH_SHORT).show();
-                            break;
-                        case 5:
-                            // Incorrect number format (handled before)
-                            Toast.makeText(SignUpActivity.this, "Incorrect number format", Toast.LENGTH_SHORT).show();
-                            break;
-                        case 6:
-                            // Phone number exists
-                            Toast.makeText(SignUpActivity.this, "Phone number already exists", Toast.LENGTH_SHORT).show();
-                            break;
+                        }
                     }
                 }
 
                 @Override
-                public void onFailure(Call<Integer> call, Throwable t) {
-                    dialog.dismiss();
-                    Toast.makeText(SignUpActivity.this, "Error while signing up", Toast.LENGTH_SHORT).show();
-                    //Log.d("retro:", "onFailure: " + t.getLocalizedMessage());
+                public void onFailure(Call<List<LogInInfo>> call, Throwable t) {
+                    Log.d("retro:", "onFailure: " + t.getLocalizedMessage());
+                    apiRequest.signUpUser2(email, createPassword, confirmPassword, phone, type, new Callback<Integer>() {
+                        @Override
+                        public void onResponse(Call<Integer> call, Response<Integer> response) {
+                            if (!response.isSuccessful()) {
+                                dialog.dismiss();
+                                Log.d("retro:", "onResponse: " + "response failed internal" + response.code());
+                                return;
+                            }
+                            dialog.dismiss();
+                            int responseType = response.body();
+                            switch (responseType) {
+                                case 2:
+                                    // Already handled
+                                    dialog.dismiss();
+                                    Toast.makeText(SignUpActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+                                    break;
+                                case 3 :
+                                    // Already handled
+                                    dialog.dismiss();
+                                    Toast.makeText(SignUpActivity.this, "Incorrect Email format", Toast.LENGTH_SHORT).show();
+                                    break;
+                                case 4:
+                                    dialog.dismiss();
+                                    Toast.makeText(SignUpActivity.this, "Email already exists", Toast.LENGTH_SHORT).show();
+                                    break;
+                                case 5:
+                                    // Already handled
+                                    dialog.dismiss();
+                                    Toast.makeText(SignUpActivity.this, "Incorrect phone number format", Toast.LENGTH_SHORT).show();
+                                    break;
+                                case 6:
+                                    dialog.dismiss();
+                                    Toast.makeText(SignUpActivity.this, "Phone number already exists", Toast.LENGTH_SHORT).show();
+                                    break;
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Integer> call, Throwable t) {
+                            dialog.dismiss();
+                            Log.d("retro:", "onFailure: " + t.getLocalizedMessage());
+                        }
+                    });
                 }
             });
         }
