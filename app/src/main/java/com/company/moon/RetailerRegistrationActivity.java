@@ -6,21 +6,28 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class RetailerRegistrationActivity extends AppCompatActivity {
     ConstraintLayout toolbar;
-    EditText editTextShopName,editTextGSTNumber,editTextBussNature;
+    EditText editTextShopName, editTextGSTNumber;
+    Spinner spinnerNatureOfBuss;
     CheckBox checkBoxTnC;
     TextView textViewTnC;
     Button buttonNext;
 
-    String shopName,numberGST,bussNature;
+    ApiRequest apiRequest;
+
+    String shopName, numberGST, bussNature;
     Boolean boolTnC;
 
     @Override
@@ -40,10 +47,20 @@ public class RetailerRegistrationActivity extends AppCompatActivity {
 
         editTextShopName = findViewById(R.id.editTextStdPrice);
         editTextGSTNumber = findViewById(R.id.editTextQuantity);
-        editTextBussNature = findViewById(R.id.editTextMRP);
+        spinnerNatureOfBuss = findViewById(R.id.editTextMRP);
         textViewTnC = findViewById(R.id.textViewTnC);
         checkBoxTnC = findViewById(R.id.checkBoxTnC2);
         buttonNext = findViewById(R.id.buttonNextDistributerAdd2);
+
+        apiRequest = ApiRequest.getInstance();
+
+        // Adapter for nature of business spinner
+        ArrayList<String> natureBuss = new ArrayList<>();
+        natureBuss.add("Nature of Business");
+        natureBuss.add("Electric");
+        natureBuss.add("Hardware");
+        ArrayAdapter<String> natureAdapter = new ArrayAdapter<>(RetailerRegistrationActivity.this, android.R.layout.simple_spinner_dropdown_item, natureBuss);
+        spinnerNatureOfBuss.setAdapter(natureAdapter);
 
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,28 +71,23 @@ public class RetailerRegistrationActivity extends AppCompatActivity {
     }
 
 
-
     private void next() {
         shopName = editTextShopName.getText().toString().trim();
         numberGST = editTextGSTNumber.getText().toString().trim();
-        bussNature = editTextBussNature.getText().toString().trim();
+        bussNature = spinnerNatureOfBuss.getSelectedItem().toString().trim();
         boolTnC = checkBoxTnC.isChecked();
 
-        if (shopName.isEmpty()){
+        if (shopName.isEmpty()) {
             editTextShopName.setError("This field can not be empty");
-        }
-        else if (bussNature.isEmpty()){
-            editTextBussNature.setError("This field cannot be empty");
-        }
-        else if (!boolTnC){
+        } else if (bussNature.equals("Nature of Business")) {
+            Toast.makeText(RetailerRegistrationActivity.this, "Select nature of business", Toast.LENGTH_SHORT).show();
+        } else if (!boolTnC) {
             Toast.makeText(this, "Accept the Terms and Conditions", Toast.LENGTH_SHORT).show();
-        }
-        else{
-            if(numberGST.isEmpty()){
-                startActivity(new Intent(RetailerRegistrationActivity.this,RetailerRegShopPicUploadActivity.class));
-            }
-            else {
-                startActivity(new Intent(RetailerRegistrationActivity.this,RetailerRegOTPVerificationActivity.class));
+        } else {
+            if (numberGST.isEmpty()) {
+                startActivity(new Intent(RetailerRegistrationActivity.this, RetailerRegShopPicUploadActivity.class));
+            } else {
+                startActivity(new Intent(RetailerRegistrationActivity.this, RetailerRegOTPVerificationActivity.class));
             }
         }
     }
