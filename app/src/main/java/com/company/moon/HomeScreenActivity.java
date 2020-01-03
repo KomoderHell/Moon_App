@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -22,6 +23,8 @@ public class HomeScreenActivity extends AppCompatActivity {
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private Toolbar toolbar;
 
+    private SQLiteDatabase userInfoDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +32,8 @@ public class HomeScreenActivity extends AppCompatActivity {
 
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer);
         toolbar = findViewById(R.id.toolbar_home);
+
+        userInfoDatabase = this.openOrCreateDatabase("UserInfoDatabase", MODE_PRIVATE, null);
 
         setSupportActionBar(toolbar);
 
@@ -75,6 +80,13 @@ public class HomeScreenActivity extends AppCompatActivity {
                     case R.id.nav_about_us:
                         break;
                     case R.id.nav_settings:
+                        break;
+                    case R.id.nav_log_out:
+                        // Delete the data from UserInfo table
+                        userInfoDatabase.execSQL("DELETE FROM UserInfo");
+                        Intent intent = new Intent(HomeScreenActivity.this, SignInActivity.class);
+                        startActivity(intent);
+                        finish();
                         break;
                 }
                 closeDrawer();
