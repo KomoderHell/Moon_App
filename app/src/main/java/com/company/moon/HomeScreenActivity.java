@@ -3,6 +3,7 @@ package com.company.moon;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
@@ -18,6 +19,7 @@ public class HomeScreenActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +27,14 @@ public class HomeScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home_screen);
 
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.Open,R.string.Close);
+        toolbar = findViewById(R.id.toolbar_home);
+
+        setSupportActionBar(toolbar);
+
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout, toolbar, R.string.Open,R.string.Close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        //drawerToggle.syncState();
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
         actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
 
         actionBarDrawerToggle.syncState();
