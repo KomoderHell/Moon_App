@@ -34,6 +34,9 @@ public class LogInInfo {
     @SerializedName("logo")
     @Expose
     private String logo;
+    @SerializedName("fill_status")
+    @Expose
+    private String fill_status;
 
     public String getId() {
         return id;
@@ -113,5 +116,13 @@ public class LogInInfo {
 
     public void setLogo(String logo) {
         this.logo = logo;
+    }
+
+    public String getFill_status() {
+        return fill_status;
+    }
+
+    public void setFill_status(String fill_status) {
+        this.fill_status = fill_status;
     }
 }
