@@ -27,7 +27,7 @@ public class RetailerRegistrationActivity extends AppCompatActivity {
 
     ApiRequest apiRequest;
 
-    String shopName, numberGST, bussNature;
+    String shopName, numberGST, bussNature, useri_id;
     Boolean boolTnC;
 
     @Override
@@ -53,6 +53,12 @@ public class RetailerRegistrationActivity extends AppCompatActivity {
         buttonNext = findViewById(R.id.buttonNextDistributerAdd2);
 
         apiRequest = ApiRequest.getInstance();
+
+        if (getIntent().getStringExtra("user_id") != null) {
+            useri_id = getIntent().getStringExtra("user_id");
+        } else {
+            // Fetch from SQLiteDatabase
+        }
 
         // Adapter for nature of business spinner
         ArrayList<String> natureBuss = new ArrayList<>();
@@ -81,14 +87,17 @@ public class RetailerRegistrationActivity extends AppCompatActivity {
             editTextShopName.setError("This field can not be empty");
         } else if (bussNature.equals("Nature of Business")) {
             Toast.makeText(RetailerRegistrationActivity.this, "Select nature of business", Toast.LENGTH_SHORT).show();
+        } else if (numberGST.equals("")) {
+            editTextGSTNumber.setError("This field cannot ber empty");
         } else if (!boolTnC) {
             Toast.makeText(this, "Accept the Terms and Conditions", Toast.LENGTH_SHORT).show();
         } else {
-            if (numberGST.isEmpty()) {
-                startActivity(new Intent(RetailerRegistrationActivity.this, RetailerRegShopPicUploadActivity.class));
-            } else {
-                startActivity(new Intent(RetailerRegistrationActivity.this, RetailerRegOTPVerificationActivity.class));
-            }
+            Intent intent = new Intent(RetailerRegistrationActivity.this, RetailerRegProfilePicActivity.class);
+            intent.putExtra("user_id", useri_id);
+            intent.putExtra("Shop Name", shopName);
+            intent.putExtra("GST Number", numberGST);
+            intent.putExtra("Nature", spinnerNatureOfBuss.getSelectedItem().toString());
+            startActivity(intent);
         }
     }
 }
