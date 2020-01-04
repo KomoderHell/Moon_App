@@ -31,4 +31,13 @@ public interface ApiInterface {
     Call<List<LogInInfo>> logInUser(@Field("email") String email,
                          @Field("password") String password)
         ;
+    
+    @Multipart
+    @POST("retailer_reg.php")
+    Call<String> retailerDetailsUpload(@Part MultipartBody.Part image,
+                                     @Part("user_id") RequestBody user_id,
+                                     @Part("name") RequestBody name,
+                                     @Part("nature") RequestBody nature,
+                                     @Part("gstin") RequestBody gstin)
+        ;
 }
