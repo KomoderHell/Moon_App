@@ -26,4 +26,9 @@ public class ApiRequest {
     public void logInUser(String email, String password, Callback<List<LogInInfo>> callback) {
         ApiClient.getClient().create(ApiInterface.class).logInUser(email, password).enqueue(callback);
     }
+    
+    public void retailerDetailsUpload(MultipartBody.Part image, RequestBody user_id, RequestBody name, RequestBody nature,
+                                      RequestBody gstin, Callback<String> callback) {
+        ApiClient.getClient().create(ApiInterface.class).retailerDetailsUpload(image, user_id, name, nature, gstin).enqueue(callback);
+    }
 }
