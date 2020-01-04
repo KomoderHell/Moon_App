@@ -34,7 +34,7 @@ public interface ApiInterface {
     
     @Multipart
     @POST("retailer_reg.php")
-    Call<String> retailerDetailsUpload(@Part MultipartBody.Part image,
+    Call<Integer> retailerDetailsUpload(@Part MultipartBody.Part image,
                                      @Part("user_id") RequestBody user_id,
                                      @Part("name") RequestBody name,
                                      @Part("nature") RequestBody nature,
