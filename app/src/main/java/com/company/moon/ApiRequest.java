@@ -28,7 +28,7 @@ public class ApiRequest {
     }
     
     public void retailerDetailsUpload(MultipartBody.Part image, RequestBody user_id, RequestBody name, RequestBody nature,
-                                      RequestBody gstin, Callback<String> callback) {
+                                      RequestBody gstin, Callback<Integer> callback) {
         ApiClient.getClient().create(ApiInterface.class).retailerDetailsUpload(image, user_id, name, nature, gstin).enqueue(callback);
     }
 }
