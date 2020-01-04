@@ -1,11 +1,17 @@
 package com.company.moon;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.loader.content.CursorLoader;
 
+import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -92,17 +98,24 @@ public class RetailerRegProfilePicActivity extends AppCompatActivity {
     }
 
     private void chooseImage() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_PICK);
-        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+        if (ContextCompat.checkSelfPermission(RetailerRegProfilePicActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) !=
+                PackageManager.PERMISSION_GRANTED) {
+            // Permission is not given (Ask for permission
+            ActivityCompat.requestPermissions(RetailerRegProfilePicActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    3);
+        } else {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_PICK);
+            startActivityForResult(intent, PICK_IMAGE_REQUEST);
+        }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode==PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data!=null && data.getData()!= null){
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageUri = data.getData();
 
             String imagePath = getRealPathFromUri(imageUri);
@@ -113,10 +126,14 @@ public class RetailerRegProfilePicActivity extends AppCompatActivity {
 
             Picasso.get().load(imageUri).into(imageViewProfilePic);
         }
+
+        if (requestCode == 3 && resultCode == RESULT_OK) {
+            Toast.makeText(this, "Permission Granted!!!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private String getRealPathFromUri(Uri uri) {
-        String[] projection = new String[] {MediaStore.Images.Media.DATA};
+        String[] projection = new String[]{MediaStore.Images.Media.DATA};
         CursorLoader loader = new CursorLoader(getApplicationContext(), uri, projection, null, null, null);
         Cursor cursor = loader.loadInBackground();
         cursor.moveToFirst();
@@ -127,26 +144,55 @@ public class RetailerRegProfilePicActivity extends AppCompatActivity {
     }
 
     private void uploadRetailerDetails() {
-        RequestBody user_id_reqBody = RequestBody.create(MediaType.parse("text/palin"), user_id);
-        RequestBody name_req_body = RequestBody.create(MediaType.parse("text/palin"), name);
-        RequestBody nature_req_body = RequestBody.create(MediaType.parse("text/palin"), nature);
-        RequestBody gstin_req_body = RequestBody.create(MediaType.parse("text/palin"), gstin);
-        apiRequest.retailerDetailsUpload(logo, user_id_reqBody, name_req_body, nature_req_body, gstin_req_body, new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if (!response.isSuccessful()) {
-                    Log.d("retro:", "onResponse: " + "response failed " + response.code());
-                    return;
-                }
-                Log.d("retro:", "onResponse: " + response.body());
-                Toast.makeText(RetailerRegProfilePicActivity.this, "Registered", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(RetailerRegProfilePicActivity.this,HomeScreenActivity.class));
-            }
+        if (logo == null) {
+            Toast.makeText(this, "Choose a photo to upload!!!", Toast.LENGTH_SHORT).show();
+        } else {
+            ProgressDialog dialog = new ProgressDialog(RetailerRegProfilePicActivity.this);
+            dialog.setMessage("Saving...");
+            dialog.setCancelable(false);
+            dialog.show();
 
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Log.d("retro:", "onFailure: " + t.getLocalizedMessage());
-            }
-        });
+            RequestBody user_id_reqBody = RequestBody.create(MediaType.parse("text/plain"), user_id);
+            RequestBody name_req_body = RequestBody.create(MediaType.parse("text/plain"), name);
+            RequestBody nature_req_body = RequestBody.create(MediaType.parse("text/plain"), nature);
+            RequestBody gstin_req_body = RequestBody.create(MediaType.parse("text/plain"), gstin);
+            apiRequest.retailerDetailsUpload(logo, user_id_reqBody, name_req_body, nature_req_body, gstin_req_body, new Callback<Integer>() {
+                @Override
+                public void onResponse(Call<Integer> call, Response<Integer> response) {
+                    if (!response.isSuccessful()) {
+                        //Log.d("retro:", "onResponse: " + "response failed " + response.code());
+                        Toast.makeText(RetailerRegProfilePicActivity.this, "Error uploading image", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                        return;
+                    }
+                    //Log.d("retro:", "onResponse: " + response.body().toString());
+                    dialog.dismiss();
+                    //Toast.makeText(RetailerRegProfilePicActivity.this, "Registered", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(RetailerRegProfilePicActivity.this,HomeScreenActivity.class));
+                }
+
+                @Override
+                public void onFailure(Call<Integer> call, Throwable t) {
+                    //Log.d("retro:", "onFailure: " + t.getLocalizedMessage());
+                    Toast.makeText(RetailerRegProfilePicActivity.this, "Error uploading image", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                }
+            });
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 3:
+                // Storage Permission code
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "Permission Granted!!!", Toast.LENGTH_SHORT).show();
+                    chooseImage();
+                } else {
+                    // Do nothing
+                }
+                break;
+        }
     }
 }
