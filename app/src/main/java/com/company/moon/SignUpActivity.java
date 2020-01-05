@@ -40,12 +40,13 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        
+        // Finding the views
         toolbar = findViewById(R.id.toolbar_signup);
         TextView textView = toolbar.findViewById(R.id.toolbar_head);
         textView.setText("Sign Up");
         ImageView imageViewBack = findViewById(R.id.back_arrow);
         imageViewBack.setVisibility(View.GONE);
-
         editTextPhone = findViewById(R.id.editTextPhone);
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextCreatePassword = findViewById(R.id.editTextCreatePassword);
@@ -130,6 +131,15 @@ public class SignUpActivity extends AppCompatActivity {
                     Log.d("retro:", "onResponse: " + response.body());
 
                     dialog.dismiss();
+                    
+                    userInfoDatabase.execSQL("DELETE FROM UserInfoTable");
+                    // Insert in SQLite Database
+                    String sql = "INSERT INTO UserInfoTable(user_id, type, fill_status) VALUES(?, ?, ?)";
+                    SQLiteStatement statement = userInfoDatabase.compileStatement(sql);
+                    statement.bindString(1, users.get(0).getId());
+                    statement.bindString(2, users.get(0).getType());
+                    statement.bindString(3, users.get(0).getFill_status());
+                    statement.execute();
 
                     Intent intent;
 
