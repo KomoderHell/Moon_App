@@ -13,6 +13,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -46,6 +48,8 @@ public class RetailerRegProfilePicActivity extends AppCompatActivity {
 
     private ApiRequest apiRequest;
 
+    private SQLiteDatabase userInfoDatabase;
+
     private String user_id, name, nature, gstin;
     private MultipartBody.Part logo;
 
@@ -60,6 +64,8 @@ public class RetailerRegProfilePicActivity extends AppCompatActivity {
         ImageView imageBack = findViewById(R.id.back_arrow);
         imageViewProfilePic = findViewById(R.id.profile_pic);
         buttonFinish = findViewById(R.id.buttonFinishDistributer);
+
+        userInfoDatabase = this.openOrCreateDatabase("UserInfoDatabase", MODE_PRIVATE, null);
 
         apiRequest = ApiRequest.getInstance();
 
@@ -86,7 +92,6 @@ public class RetailerRegProfilePicActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 chooseImage();
-
             }
         });
         buttonFinish.setOnClickListener(new View.OnClickListener() {
@@ -165,10 +170,29 @@ public class RetailerRegProfilePicActivity extends AppCompatActivity {
                         dialog.dismiss();
                         return;
                     }
-                    //Log.d("retro:", "onResponse: " + response.body().toString());
+
                     dialog.dismiss();
-                    //Toast.makeText(RetailerRegProfilePicActivity.this, "Registered", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(RetailerRegProfilePicActivity.this,HomeScreenActivity.class));
+
+                    // update the fill_status in the SQLite Database to be 1
+                    Cursor cursor = userInfoDatabase.rawQuery("SELECT * FROM UserInfoTable", null);
+                    if (cursor.getCount() > 0) {
+                        cursor.moveToFirst();
+                        String userId = cursor.getString(cursor.getColumnIndex("user_id"));
+                        String type = cursor.getString(cursor.getColumnIndex("type"));
+
+                        userInfoDatabase.execSQL("DELETE FROM UserInfoTable");
+
+                        String sql = "INSERT INTO UserInfoTable(user_id, type, fill_status) VALUES(?, ?, ?)";
+                        SQLiteStatement statement = userInfoDatabase.compileStatement(sql);
+                        statement.bindString(1, userId);
+                        statement.bindString(2, type);
+                        statement.bindString(3, "1");
+                        statement.execute();
+                    }
+
+                    Intent intent = new Intent(RetailerRegProfilePicActivity.this, HomeScreenActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
                 }
 
                 @Override
