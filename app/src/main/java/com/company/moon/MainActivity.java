@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
         userInfoDatabase = this.openOrCreateDatabase("UserInfoDatabase", MODE_PRIVATE, null);
         // user_id --> Id of the user
         // type --> admin, manufacturer, retailer
-        userInfoDatabase.execSQL("CREATE TABLE IF NOT EXISTS UserInfo(user_id varchar2(20), type varchar2(1))");
+        // fill_status --> whether or not the user had completed registration
+        userInfoDatabase.execSQL("CREATE TABLE IF NOT EXISTS UserInfoTable(user_id varchar2(20), type varchar2(1), fill_status varchar2(1))");
 
         Handler.postDelayed(new Runnable() {
             @Override
@@ -31,10 +32,25 @@ public class MainActivity extends AppCompatActivity {
                 Cursor cursor = userInfoDatabase.rawQuery("SELECT * FROM UserInfo", null);
                 Intent intent = null;
                 if (cursor.getCount() > 0) {
-                    // Go to HomeScreenActivity (Remember me was clicked before)
+                    // This code is executed only when remember me was selected before
                     cursor.moveToFirst();
-                    intent = new Intent(MainActivity.this, HomeScreenActivity.class);
-                    intent.putExtra("Type", cursor.getString(cursor.getColumnIndex("type")));
+                    String typeStr = cursor.getString(cursor.getColumnIndex("type"));
+                    if (typeStr.equals("1")) {
+                        // Handle admin section here
+                    } else if (typeStr.equals("2")) {
+                        // Handle manufacturer section here
+                    } else if (typeStr.equals("3")) {
+                        // Handle retailer section here
+                        // If fill_status of retailer is 1 go to HomeScreen else go to RetailerRegistration
+                        String fillStatusStr = cursor.getString(cursor.getColumnIndex("fill_status"));
+                        Log.d("sqlite:", "run: " + fillStatusStr);
+                        if (fillStatusStr.equals("1")) {
+                            // Go to HomeScreen
+                            intent = new Intent(MainActivity.this, HomeScreenActivity.class);
+                        } else {
+                            intent = new Intent(MainActivity.this, RetailerRegistrationActivity.class);
+                        }
+                    }
                 } else {
                     intent = new Intent(MainActivity.this, SignInActivity.class);
                 }
