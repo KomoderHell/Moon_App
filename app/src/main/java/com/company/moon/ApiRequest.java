@@ -31,4 +31,8 @@ public class ApiRequest {
                                       RequestBody gstin, Callback<Integer> callback) {
         ApiClient.getClient().create(ApiInterface.class).retailerDetailsUpload(image, user_id, name, nature, gstin).enqueue(callback);
     }
+    
+    public void getProductCompanyNames(Callback<List<ModelNames>> callback) {
+        ApiClient.getClient().create(ApiInterface.class).getProductCompanyNames().enqueue(callback);
+    }
 }
