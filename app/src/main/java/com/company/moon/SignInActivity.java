@@ -42,12 +42,13 @@ public class SignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+        
+        // Finding the views
         toolbar = findViewById(R.id.toolbar_distributer_registration);
         TextView textView = toolbar.findViewById(R.id.toolbar_head);
         textView.setText("Sign in");
         ImageView imageViewBack = findViewById(R.id.back_arrow);
         imageViewBack.setVisibility(View.GONE);
-
         editTextMobileEmail = findViewById(R.id.editTextStdPrice);
         editTextPassword = findViewById(R.id.editTextQuantity);
         checkBoxRemember = findViewById(R.id.checkBoxTnC2);
@@ -111,6 +112,16 @@ public class SignInActivity extends AppCompatActivity {
                     Intent intent;
 
                     List<LogInInfo> user = response.body();
+                    
+                    if (boolRemember) {
+                        // Store the information in the database(UserInfo)
+                        String sql = "INSERT INTO UserInfoTable(user_id, type, fill_status) VALUES(?, ?, ?)";
+                        SQLiteStatement statement = userInfoDatabase.compileStatement(sql);
+                        statement.bindString(1, user.get(0).getId());
+                        statement.bindString(2, user.get(0).getType());
+                        statement.bindString(3, user.get(0).getFill_status());
+                        statement.execute();
+                    }
 
                     String type = user.get(0).getType();
                     // Type is used to identify who is the user
