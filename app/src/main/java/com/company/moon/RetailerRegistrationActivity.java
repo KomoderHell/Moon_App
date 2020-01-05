@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -27,7 +29,9 @@ public class RetailerRegistrationActivity extends AppCompatActivity {
 
     ApiRequest apiRequest;
 
-    String shopName, numberGST, bussNature, useri_id;
+    SQLiteDatabase userInfoDatabase;
+
+    String shopName, numberGST, bussNature, user_id;
     Boolean boolTnC;
 
     @Override
@@ -52,12 +56,17 @@ public class RetailerRegistrationActivity extends AppCompatActivity {
         checkBoxTnC = findViewById(R.id.checkBoxTnC2);
         buttonNext = findViewById(R.id.buttonNextDistributerAdd2);
 
+        userInfoDatabase = this.openOrCreateDatabase("UserInfoDatabase", MODE_PRIVATE, null);
+
         apiRequest = ApiRequest.getInstance();
 
         if (getIntent().getStringExtra("user_id") != null) {
-            useri_id = getIntent().getStringExtra("user_id");
+            user_id = getIntent().getStringExtra("user_id");
         } else {
             // Fetch from SQLiteDatabase
+            Cursor cursor = userInfoDatabase.rawQuery("SELECT * FROM UserInfoTable", null);
+            cursor.moveToFirst();
+            user_id = cursor.getString(cursor.getColumnIndex("user_id"));
         }
 
         // Adapter for nature of business spinner
@@ -93,7 +102,7 @@ public class RetailerRegistrationActivity extends AppCompatActivity {
             Toast.makeText(this, "Accept the Terms and Conditions", Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(RetailerRegistrationActivity.this, RetailerRegProfilePicActivity.class);
-            intent.putExtra("user_id", useri_id);
+            intent.putExtra("user_id", user_id);
             intent.putExtra("Shop Name", shopName);
             intent.putExtra("GST Number", numberGST);
             intent.putExtra("Nature", spinnerNatureOfBuss.getSelectedItem().toString());
