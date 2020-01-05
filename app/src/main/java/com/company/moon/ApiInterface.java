@@ -40,4 +40,7 @@ public interface ApiInterface {
                                      @Part("nature") RequestBody nature,
                                      @Part("gstin") RequestBody gstin)
         ;
+    
+    @GET("get_details.php")
+    Call<List<ModelNames>> getProductCompanyNames();
 }
