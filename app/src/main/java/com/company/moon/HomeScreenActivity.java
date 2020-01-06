@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -141,7 +142,15 @@ public class HomeScreenActivity extends AppCompatActivity {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             closeDrawer();
         } else {
-            super.onBackPressed();
+            ProductDetailsFragment fragment = (ProductDetailsFragment) getSupportFragmentManager().findFragmentByTag("ProductFragment");
+            if (fragment != null && fragment.isVisible()) {
+                // Replace this fragment and load Home Fragment
+                Log.d("fragment", "onBackPressed: " + "at correct position");
+                FragmentHome fragmentHome = new FragmentHome();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragmentHome).commit();
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 }
