@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -40,8 +41,8 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        
-        // Finding the views
+
+        //Finding the views
         toolbar = findViewById(R.id.toolbar_signup);
         TextView textView = toolbar.findViewById(R.id.toolbar_head);
         textView.setText("Sign Up");
@@ -131,7 +132,7 @@ public class SignUpActivity extends AppCompatActivity {
                     Log.d("retro:", "onResponse: " + response.body());
 
                     dialog.dismiss();
-                    
+
                     userInfoDatabase.execSQL("DELETE FROM UserInfoTable");
                     // Insert in SQLite Database
                     String sql = "INSERT INTO UserInfoTable(user_id, type, fill_status) VALUES(?, ?, ?)";
