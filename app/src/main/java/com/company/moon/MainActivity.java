@@ -7,10 +7,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
     private SQLiteDatabase userInfoDatabase;
+    private SQLiteDatabase productCompanyDatabase;
 
     android.os.Handler Handler = new Handler();
 
@@ -24,12 +26,17 @@ public class MainActivity extends AppCompatActivity {
         // user_id --> Id of the user
         // type --> admin, manufacturer, retailer
         // fill_status --> whether or not the user had completed registration
+        productCompanyDatabase = this.openOrCreateDatabase("ProductCompanyDatabase", MODE_PRIVATE, null);
+
         userInfoDatabase.execSQL("CREATE TABLE IF NOT EXISTS UserInfoTable(user_id varchar2(20), type varchar2(1), fill_status varchar2(1))");
+        productCompanyDatabase.execSQL("CREATE TABLE IF NOT EXISTS Companies(Name varchar2(50), ID varchar2(20))");
+        productCompanyDatabase.execSQL("CREATE TABLE IF NOT EXISTS Products(Name varchar2(50), ID varchar2(20))");
+        productCompanyDatabase.execSQL("CREATE TABLE IF NOT EXISTS CurrentProduct(ID varchar2(20))");
 
         Handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Cursor cursor = userInfoDatabase.rawQuery("SELECT * FROM UserInfo", null);
+                Cursor cursor = userInfoDatabase.rawQuery("SELECT * FROM UserInfoTable", null);
                 Intent intent = null;
                 if (cursor.getCount() > 0) {
                     // This code is executed only when remember me was selected before
